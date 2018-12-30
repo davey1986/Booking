@@ -50,6 +50,7 @@ class ReservationController extends Controller
         //
     }
 
+
     /**
      * Display the specified resource.
      *

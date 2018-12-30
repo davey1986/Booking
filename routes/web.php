@@ -11,10 +11,6 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
-
 Route::get('/', 'DashboardController@roomCount');
 Route::get('ajax_room_count', 'RoomController@roomCount');
 
@@ -26,16 +22,12 @@ Route::get('/test', 'DashboardController@test')->name('test');
 //Main routes
 Route::get('check_out/{id}/{guest_id}','RoomController@check_out')->name('check_out');
 Route::get('cancel_reservation/{id}/{guest_id}','RoomController@cancel_reservation')->name('cancel_reservation');
-
 Route::get('check_in/{id}', 'RoomController@check_in')->name('check_in');
 Route::post('check_in_guest', 'BookingController@store')->name('check_in_guest');
-
 Route::get('clean_room/{id}', 'RoomController@clean_room')->name('clean_room');
-
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/rooms', 'DashboardController@rooms')->name('rooms');
 Route::get('/facilities', 'DashboardController@facilities')->name('facilities');
-
 Route::get('admin', 'RoomController@index');
 Route::get('admin/room/{id}', 'RoomController@show');
 

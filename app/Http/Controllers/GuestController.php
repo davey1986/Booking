@@ -8,6 +8,7 @@ use App\Guest;
 
 class GuestController extends Controller
 {
+    protected $guests;
 
     /**
      * Create a new controller instance.
@@ -21,17 +22,15 @@ class GuestController extends Controller
 
 
     /**
-     * Display a listing of the resource.
+     * Display all guests
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-      $guests = Guest::all();
-
-      return view('admin/guests/index')->with('guests', $guests);
+        $this->guests = Guest::all();
+        return view('admin/guests/index')->with('guests', $this->guests);
     }
-
 
 
     /**
@@ -42,9 +41,8 @@ class GuestController extends Controller
      */
     public function show($id)
     {
-
-      $guest = Guest::where('id','=',$id)->first();
-      return view('admin/guests/view')->with('guest', $guest);
+        $this->guests = Guest::where('id','=',$id)->first();
+        return view('admin/guests/view')->with('guest', $this->guests);
     }
 
 

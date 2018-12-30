@@ -14,22 +14,16 @@
   </div>
 </div>
 
-
 @endsection
-
 
 @section('script')
 
 <script>
-
   $(document).ready(function() {
-
     // Set refresh timer
     let timer = setInterval(autoRefresh, 50000);
     let availableRooms = document.getElementById('availableNumber');
-
     function autoRefresh(){
-
       $.ajax({
         url:'ajax_room_count',
         type:'get',
@@ -41,10 +35,7 @@
         }
       });
     }
-
-
   });
-
 </script>
 
 @endsection
