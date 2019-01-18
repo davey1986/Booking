@@ -36,6 +36,7 @@ class Room extends Model
     {
         $count = 0;
         $today = date("Y-m-d ");
+        //Change this to a find for larger queries.
         $rooms = Room::all();
         $count = count($rooms);
         //Loop through rooms, and if a guest checked in minus from count

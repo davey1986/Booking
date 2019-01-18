@@ -144,9 +144,16 @@ class RoomController extends Controller
         $this->room->name = $request->input('room_name');
         $this->room->beds = $request->input('number_of_beds');
         $this->room->cost_per_night = $request->input('cost_per_night');
-        $this->room->save();
-        // Return to Dashboard
-        return redirect('/dashboard');
+
+        if ($this->room->save()) {
+            // Return to Dashboard
+            return redirect('/dashboard');
+        } else {
+            session()->flash('status', "Unable to create new room. ");
+            return redirect('/dashboard');
+        }
+
+
     }
 
     /**
@@ -170,13 +177,13 @@ class RoomController extends Controller
                 if (date($guest->check_in) <= date($today) && date($guest->check_out) >= date($today)) {
                     $guest['type'] = 'current';
                     //Get the cost of the room
-                    $this->room['cost'] = $this->roomCost($guest->check_out,$guest->check_in, $this->room->cost_per_night);
+                    $guest['cost'] = $this->roomCost($guest->check_out,$guest->check_in, $this->room->cost_per_night);
                 } elseif (date($guest->check_in) > date($today)) {
                     $guest['type'] = 'future';
-                    $this->room['cost'] = $this->roomCost($guest->check_out,$guest->check_in, $this->room->cost_per_night);
+                    $guest['cost'] = $this->roomCost($guest->check_out,$guest->check_in, $this->room->cost_per_night);
                 } else {
                     $guest['type'] = 'warning';
-                    $this->room['cost'] = $this->roomCost($guest->check_out,$guest->check_in, $this->room->cost_per_night);
+                    $guest['cost'] = $this->roomCost($guest->check_out,$guest->check_in, $this->room->cost_per_night);
                 }
             } /* foreach($guests as $guest){ */
         } /* if(count($guests) > 0 ){ */
@@ -302,8 +309,13 @@ class RoomController extends Controller
         // Check no guests are booked into this room.
         if ($this->guests->count() == 0 ) {
             $this->room = Room::find($id);
-            $this->room->destroy($id);
-            return redirect('dashboard');
+            if ($this->room->destroy($id)) {
+                return redirect('dashboard');
+            } else {
+                session()->flash('status', "Unable to delete room. ");
+                return redirect('dashboard');
+            }
+
         } else {
             session()->flash('status', "Guests are still booked into to this room. Please check out guests first. ");
             return redirect('/admin/room/'.$id);
@@ -322,8 +334,13 @@ class RoomController extends Controller
     {
         $this->room = new Room($id);
         $this->room->cost_per_night = $cost;
-        $this->room->save();
-        return view('admin/room')->with('room', $this->room);
+        if ($this->room->save()) {
+            return view('admin/room')->with('room', $this->room);
+        } else {
+            session()->flash('status', "Unable to change room price room. ");
+            return view('admin/room')->with('room', $this->room);
+        }
+
     }
 
 

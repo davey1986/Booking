@@ -92,7 +92,7 @@
                                 <div class="row">
                                     <div class="one-third right-border-wall">
                                         <div ><h4>Total cost for stay : </h4></div>
-                                        <div ><h4 >R<a id="totalCost">{{$room->cost}}</a></h4></div>
+                                        <div ><h4 >R <a id="totalCost">{{$guest->cost}}</a></h4></div>
                                     </div>
                                     <a href="/check_out/{{$room->id}}/{{$guest->id}}" class="one-third right-border-wall">
                                         <div><h4>Check out: </h4></div>
@@ -161,7 +161,7 @@
                                                             <h4 style=" color: #1b1b1e; font-weight: bold;">Check-out: {{$guest->check_out}} </h4>
                                                         </div>
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-1 mb-2 text-center">
-                                                            <h3 class="card-text">Cost of stay : R <a id="totalCost">{{$room->cost}}</a></h3>
+                                                            <h3 class="card-text">Cost of stay : R <a id="totalCost">{{$guest->cost}}</a></h3>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -200,7 +200,7 @@
                                                         <h4 style=" color: #1b1b1e; font-weight: bold;">Check-out: {{$guest->check_out}} </h4>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-1 mb-2 text-center">
-                                                        <h2 class="card-text">Total cost for stay : R <a id="totalCost">{{$room->cost}}</a></h2>
+                                                        <h2 class="card-text">Total cost for stay : R <a id="totalCost">{{$guest->cost}}</a></h2>
                                                     </div>
                                                 </div>
                                             </div>

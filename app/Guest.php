@@ -46,7 +46,7 @@ class Guest extends Model
         return Guest::where('room_id','=', $room_id)->where('vacant', '>', 0)->orderBy('check_in',$order)->get();
     }
 
-    /* Gets the All guest reservations
+    /* Gets All guest reservations
     *
     * @param integer $room_id
     * @param integer $guest_id - can be null

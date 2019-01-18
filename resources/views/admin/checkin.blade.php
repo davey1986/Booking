@@ -32,7 +32,7 @@
                         <div class="form-row mb-1">
                             <div class="col">
                                 <label for="formGroupExampleInput2">Requests</label>
-                                <textarea type="text" class="form-control" rows="10"  id="request" name="request" placeholder="Special Requests"></textarea>
+                                <textarea type="text" class="form-control" rows="10"  id="requests" name="requests" placeholder="Special Requests"></textarea>
                             </div>
                             <div class="col-md-6">
                                 <div class="col-md-12 mb-1">
